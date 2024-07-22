@@ -1,0 +1,13 @@
+@import "~bootstrap/scss/bootstrap";
+@import 'variables';
+
+.card,
+.card-header,
+.card-footer {
+    border: none;
+}
+$soft-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+.card {
+    box-shadow: $soft-box-shadow;
+}

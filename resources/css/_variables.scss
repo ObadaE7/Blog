@@ -1,0 +1,30 @@
+$primary: #337ab7;
+$secondary: #6C757D;
+$success: #5cb85c;
+$danger: #d9534f;
+$warning: #f0ad4e;
+$info: #5bc0de;
+$light: #F8F9FA;
+$dark: #343A40;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "danger": $danger,
+  "warning": $warning,
+  "info": $info,
+  "light": $light,
+  "dark": $dark,
+);
+
+$custom-colors: (
+  "orange": #f28123
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+$card-cap-bg: #fff;
+$btn-border-radius: .25rem;
+$btn-border-radius-sm: .25rem;
+$btn-border-radius-lg: .25rem;
