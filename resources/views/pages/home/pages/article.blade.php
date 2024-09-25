@@ -22,7 +22,7 @@
                             </div>
 
                             <div class="d-flex flex-sm-row flex-column justify-content-between">
-                                <div class="d-flex align-items-center gap-2">
+                                <div class="gap-2 d-flex align-items-center">
                                     @if ($article->owner()->imageable)
                                         <img src="{{ asset('storage/' . $article->owner()->imageable->url) }}"
                                             class="avatar" alt="{{ $article->owner()->uname }}">
@@ -35,26 +35,26 @@
                                     <span class="text-muted">{{ '- ' . $article->getDateForHumans() }}</span>
                                 </div>
 
-                                <div class="d-flex justify-content-center gap-4">
+                                <div class="gap-4 d-flex justify-content-center">
                                     @php
                                         $user = Auth::user();
                                         $isLiked = $user ? $article->isLikedByUser($user->id) : false;
                                         $isDisliked = $user ? $article->isDislikedByUser($user->id) : false;
                                     @endphp
 
-                                    <div class="d-flex align-items-center gap-2">
+                                    <div class="gap-2 d-flex align-items-center">
                                         <button wire:click.prevent='like({{ $article->id }})'
                                             class="btn__transparent btn__like {{ $isLiked ? 'active' : '' }}"></button>
                                         <span class="text-muted">{{ $article->likes_count }}</span>
                                     </div>
 
-                                    <div class="d-flex align-items-center gap-2">
+                                    <div class="gap-2 d-flex align-items-center">
                                         <button wire:click.prevent='dislike({{ $article->id }})'
                                             class="btn__transparent btn__dislike {{ $isDisliked ? 'active' : '' }}"></button>
                                         <span class="text-muted">{{ $article->dislikes_count }}</span>
                                     </div>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <a href="#comment-form" class="d-flex cursor-pointer">
+                                    <div class="gap-2 d-flex align-items-center">
+                                        <a href="#comment-form" class="cursor-pointer d-flex">
                                             <span class="material-symbols-outlined orange-forum fs-5">forum</span>
                                         </a>
                                         <span class="text-muted">{{ $commentCount }}</span>
@@ -164,7 +164,7 @@
                                     alt="{{ $topArticle->slug }}">
                                 <div class="text-overlay">
                                     <a href="{{ route('article', $topArticle->slug) }}" class="link">
-                                        <span class="text-overlay-title underline">{{ $topArticle->title }}</span>
+                                        <span class="underline text-overlay-title">{{ $topArticle->title }}</span>
                                     </a>
                                     <div class="text-overlay-subtitle">
                                         <span class="material-symbols-outlined fs-5">person_edit</span>
@@ -177,7 +177,7 @@
                                 <div class="trending__bottom-row">
                                     <img src="{{ asset('storage/' . $topArticle->imageable->url) }}" class="w-25"
                                         alt="{{ $topArticle->slug }}">
-                                    <div class="d-flex flex-column gap-2">
+                                    <div class="gap-2 d-flex flex-column">
                                         <a href="{{ route('article', $topArticle->slug) }}" class="link">
                                             <span class="underline">{{ $topArticle->title }}</span>
                                         </a>

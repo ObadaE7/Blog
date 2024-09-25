@@ -1,14 +1,14 @@
 @section('breadcrumb')
-    <x-breadcrumb>
-        <li class="breadcrumb-item">
-            <a href="{{ route('dashboard.analysis') }}">
-                @lang('dashboard.navigation.Analysis')
-            </a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">
-            <a>@lang('dashboard.navigation.Statistics')</a>
-        </li>
-    </x-breadcrumb>
+<x-breadcrumb>
+    <li class="breadcrumb-item">
+        <a href="{{ route('dashboard.analysis') }}">
+            @lang('dashboard.navigation.Analysis')
+        </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+        <a>@lang('dashboard.navigation.Statistics')</a>
+    </li>
+</x-breadcrumb>
 @endsection
 
 <section class="analysis__wrapper">
@@ -69,22 +69,22 @@
             <div class="col d-flex flex-column justify-content-center">
                 <ul class="analysis__ul">
                     @forelse ($topFiveArticles as $topFive)
-                        <li>
-                            <a href="#">{{ $topFive->title }}</a>
-                            <small class="text-muted ms-2">(#{{ $topFive->id }})</small>
-                        </li>
+                    <li>
+                        <a href="{{route('article', $topFive->slug)}}">{{ $topFive->title }}</a>
+                        <small class="text-muted ms-2">(#{{ $topFive->id }})</small>
+                    </li>
                     @empty
-                        <div class="d-flex flex-column align-items-center text-muted">
-                            <span>@lang('dashboard.analysis.Empty line one')</span>
-                            <span>@lang('dashboard.analysis.Empty line two')</span>
-                        </div>
+                    <div class="d-flex flex-column align-items-center text-muted">
+                        <span>@lang('dashboard.analysis.Empty line one')</span>
+                        <span>@lang('dashboard.analysis.Empty line two')</span>
+                    </div>
                     @endforelse
                 </ul>
             </div>
 
             <div class="col d-flex justify-content-center">
                 @if (!empty($topFiveArticlesChart['articleId'] && $topFiveArticlesChart['likesCount']))
-                    <div class="analysis__chart" id="highest-articles"></div>
+                <div class="analysis__chart" id="highest-articles"></div>
                 @endif
             </div>
         </div>
@@ -98,12 +98,12 @@
             </div>
             <div class="d-flex justify-content-center mt-3">
                 @if (empty($articlesPerDayChart->toArray()))
-                    <div class="d-flex flex-column align-items-center text-muted">
-                        <span>@lang('dashboard.analysis.Empty line one')</span>
-                        <span>@lang('dashboard.analysis.Empty line two')</span>
-                    </div>
+                <div class="d-flex flex-column align-items-center text-muted">
+                    <span>@lang('dashboard.analysis.Empty line one')</span>
+                    <span>@lang('dashboard.analysis.Empty line two')</span>
+                </div>
                 @else
-                    <div class="analysis__chart" id="track-posting"></div>
+                <div class="analysis__chart" id="track-posting"></div>
                 @endif
             </div>
         </div>
@@ -115,12 +115,12 @@
             </div>
             <div class="d-flex justify-content-center mt-3">
                 @if (empty($reactionsChart['totalLikes'] || $reactionsChart['totalDislikes']))
-                    <div class="d-flex flex-column align-items-center text-muted">
-                        <span>@lang('dashboard.analysis.Empty line one')</span>
-                        <span>@lang('dashboard.analysis.Empty line two')</span>
-                    </div>
+                <div class="d-flex flex-column align-items-center text-muted">
+                    <span>@lang('dashboard.analysis.Empty line one')</span>
+                    <span>@lang('dashboard.analysis.Empty line two')</span>
+                </div>
                 @else
-                    <div class="analysis__chart" id="reaction-rate"></div>
+                <div class="analysis__chart" id="reaction-rate"></div>
                 @endif
             </div>
         </div>
@@ -128,9 +128,9 @@
 </section>
 
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
-    <script>
-        var highestArticlesChart = echarts.init(document.getElementById('highest-articles'));
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script>
+    var highestArticlesChart = echarts.init(document.getElementById('highest-articles'));
         var highestArticlesOption = {
             tooltip: {},
             legend: {
@@ -148,10 +148,10 @@
             }]
         };
         highestArticlesChart.setOption(highestArticlesOption);
-    </script>
+</script>
 
-    <script>
-        var trackPostingChart = echarts.init(document.getElementById('track-posting'));
+<script>
+    var trackPostingChart = echarts.init(document.getElementById('track-posting'));
         var trackPostingOption = {
             tooltip: {},
             legend: {
@@ -170,10 +170,10 @@
             }]
         };
         trackPostingChart.setOption(trackPostingOption);
-    </script>
+</script>
 
-    <script>
-        var reactionRateChart = echarts.init(document.getElementById('reaction-rate'));
+<script>
+    var reactionRateChart = echarts.init(document.getElementById('reaction-rate'));
         var reactionRateOption = {
             tooltip: {},
             legend: {
@@ -198,5 +198,5 @@
             }]
         };
         reactionRateChart.setOption(reactionRateOption);
-    </script>
+</script>
 @endpush

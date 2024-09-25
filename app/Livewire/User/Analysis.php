@@ -2,22 +2,22 @@
 
 namespace App\Livewire\User;
 
-use App\Models\Post;
+use App\Models\Article;
 use Livewire\Component;
 
 class Analysis extends Component
 {
     public function totalArticles()
     {
-        return Post::where('user_id', auth()->id())->count();
+        return Article::where('user_id', auth()->id())->count();
     }
 
     public function totalReactions()
     {
-        return Post::where('user_id', auth()->id())
-            // ->withCount('reactions')
-            ->get();
-            // ->sum('reactions_count');
+        return Article::where('user_id', auth()->id())
+            ->withCount('reactions')
+            ->get()
+            ->sum('reactions_count');
     }
 
     public function averageReactionPerArticle()
@@ -29,12 +29,12 @@ class Analysis extends Component
 
     public function topFiveArticles()
     {
-        return Post::where('user_id', auth()->id())
-            // ->withCount(['reactions as likes_count' => function ($query) {
-            //     $query->where('type', 1);
-            // }])
-            // ->having('likes_count', '>', 0)
-            // ->orderByDesc('likes_count')
+        return Article::where('user_id', auth()->id())
+            ->withCount(['reactions as likes_count' => function ($query) {
+                $query->where('type', 1);
+            }])
+            ->having('likes_count', '>', 0)
+            ->orderByDesc('likes_count')
             ->take(5)
             ->get();
     }
@@ -49,7 +49,7 @@ class Analysis extends Component
 
     public function articlesPerDayChart()
     {
-        return Post::where('user_id', auth()->id())
+        return Article::where('user_id', auth()->id())
             ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
             ->groupBy('date')
             ->orderBy('date', 'asc')
@@ -58,15 +58,15 @@ class Analysis extends Component
 
     public function reactionsChart()
     {
-        $posts = Post::where('user_id', auth()->id())
-            // ->withCount([
-            //     'reactions as likes_count' => function ($query) {
-            //         $query->where('type', 1);
-            //     },
-            //     'reactions as dislikes_count' => function ($query) {
-            //         $query->where('type', 0);
-            //     },
-            // ])
+        $posts = Article::where('user_id', auth()->id())
+            ->withCount([
+                'reactions as likes_count' => function ($query) {
+                    $query->where('type', 1);
+                },
+                'reactions as dislikes_count' => function ($query) {
+                    $query->where('type', 0);
+                },
+            ])
             ->get();
         $totalLikes = $posts->sum('likes_count');
         $totalDislikes = $posts->sum('dislikes_count');

@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 use App\Livewire\Home\Index;
 use App\Livewire\Home\Pages\{AboutUs, Articles, Article, ArticlesByCategory, ArticlesByTag, Categories, ContactUs, PrivacyPolicy, Writers};

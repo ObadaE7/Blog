@@ -13,7 +13,7 @@
                             <img src="{{ asset('storage/' . $latestArticle->imageable->url) }}"
                                 alt="{{ $latestArticle->slug }}">
                         </div>
-                        <div class="d-flex flex-column gap-2">
+                        <div class="gap-2 d-flex flex-column">
                             @forelse ($latestArticle->tags->take(1) as $tag)
                                 <a href="{{ route('articles.tagged', $tag->slug) }}"
                                     class="badge__tag bg-danger-subtle text-danger">
@@ -23,7 +23,7 @@
                                 <span class="badge__tag bg-danger-subtle text-danger">NULL</span>
                             @endforelse
                             <span class="fw-bold">{{ $latestArticle->title }}</span>
-                            <div class="d-flex align-items-center gap-2">
+                            <div class="gap-2 d-flex align-items-center">
                                 @if ($latestArticle->ownerAvatar())
                                     <img src="{{ asset('storage/' . $latestArticle->ownerAvatar()) }}" class="avatar"
                                         alt="Avatar">
@@ -35,9 +35,9 @@
                                 <span class="text-muted">{{ $latestArticle->ownerFullName() }}</span>
                             </div>
                             <small class="text-muted truncate-three-line">{{ $latestArticle->content }}</small>
-                            <div class="text-center mt-auto">
+                            <div class="mt-auto text-center">
                                 <a href="{{ route('article', $latestArticle->slug) }}"
-                                    class="btn btn-outline-primary rounded-pill px-5">
+                                    class="px-5 btn btn-outline-primary rounded-pill">
                                     @lang('index.sections.Read more')
                                 </a>
                             </div>
@@ -51,7 +51,7 @@
                 @endforelse
 
                 @if ($latestArticles->total() > 0 && $latestArticles->count() < $latestArticles->total())
-                    <div class="d-flex justify-content-center border-top pt-3">
+                    <div class="pt-3 d-flex justify-content-center border-top">
                         <button wire:click.prevent='loadMore' class="btn btn-primary w-50">عرض المزيد</button>
                     </div>
                 @endif

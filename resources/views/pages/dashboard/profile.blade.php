@@ -32,7 +32,7 @@
 
                 <div class="profile__info">
                     <span>{{ $fname . ' ' . $lname }}</span>
-                    <div class="d-flex align-items-center gap-1 text-muted">
+                    <div class="gap-1 d-flex align-items-center text-muted">
                         <span class="material-symbols-outlined fs-6">alternate_email</span>
                         <span>{{ $uname }}</span>
                     </div>

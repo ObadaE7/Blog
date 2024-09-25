@@ -23,7 +23,7 @@
                                     </a>
                                 @endforeach
                                 <a href="{{ route('article', $article->slug) }}" class="link">
-                                    <span class="text-overlay-title underline">{{ $article->title }}</span>
+                                    <span class="underline text-overlay-title">{{ $article->title }}</span>
                                 </a>
                                 <div class="text-overlay-subtitle">
                                     <span class="material-symbols-outlined fs-5">person_edit</span>
@@ -38,7 +38,7 @@
                                 <img src="{{ asset('storage/' . $article->imageable->url) }}" class="w-25"
                                     alt="{{ $article->slug }}">
                                 <div class="row__top-left--row-title">
-                                    <div class="d-flex flex-column gap-2">
+                                    <div class="gap-2 d-flex flex-column">
                                         <a href="{{ route('article', $article->slug) }}" class="link">
                                             <span class="underline">{{ $article->title }}</span>
                                         </a>
@@ -69,7 +69,7 @@
             @forelse ($randomArticles as $randomArticle)
                 <div class="row__bottom--row">
                     <div class="position-relative">
-                        <div class="overlay rounded"></div>
+                        <div class="rounded overlay"></div>
                         @isset($randomArticle->imageable->url)
                             <img src="{{ asset('storage/' . $randomArticle->imageable->url) }}" alt="">
                         @endisset
@@ -149,7 +149,7 @@
                             alt="{{ $topArticle->slug }}">
                         <div class="text-overlay">
                             <a href="{{ route('article', $topArticle->slug) }}" class="link">
-                                <span class="text-overlay-title underline">{{ $topArticle->title }}</span>
+                                <span class="underline text-overlay-title">{{ $topArticle->title }}</span>
                             </a>
                             <div class="text-overlay-subtitle">
                                 <span class="material-symbols-outlined fs-5">person_edit</span>
@@ -162,7 +162,7 @@
                         <div class="trending__bottom-row">
                             <img src="{{ asset('storage/' . $topArticle->imageable->url) }}" class="w-25"
                                 alt="{{ $topArticle->slug }}">
-                            <div class="d-flex flex-column gap-2">
+                            <div class="gap-2 d-flex flex-column">
                                 <a href="{{ route('article', $topArticle->slug) }}" class="link">
                                     <span class="underline">{{ $topArticle->title }}</span>
                                 </a>
